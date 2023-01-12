@@ -7,6 +7,7 @@ const path = require('path')
 
 const GarminConnect = require('./garminConnect.js')
 const GsProConnect = require('./gsProConnect.js')
+const PuttingConnect = require('./camputtingConnect.js')
 
 if (require('electron-squirrel-startup')) {
     app.quit()
@@ -30,6 +31,7 @@ const startApp = () => {
 
     const gsProConnect = new GsProConnect(port2)
     const garminConnect = new GarminConnect(port2, gsProConnect)
+    const camputtingConnect = new PuttingConnect(port2, gsProConnect)
 
     mainWindow.webContents.postMessage('main-port', null, [port1])
 
