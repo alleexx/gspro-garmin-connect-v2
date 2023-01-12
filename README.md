@@ -2,10 +2,14 @@
 
 index.js and camputtingConnect.js need to updated in src folder of installed original version from travis lang, here v. 1.3.5
 
+this runs an express server at http://localhost:8888/ to listen to putt shots from https://github.com/alleexx/cam-putting-py
+
 npm needs to be available, afterwards the following commands must be executed in resources/app directory
 
 npm install express --save
-npm install bodyparser
+npm install bodyparser --save
+
+Now just run the garmin connect exe as before.
 
 This is early development so happy about feedback but do not base your SGT career on it
 
