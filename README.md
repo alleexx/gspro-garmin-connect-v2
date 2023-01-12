@@ -1,3 +1,16 @@
+# Forked from travislang to include integration into cam-putting-py to send putting shots to GSPRO:
+
+index.js and camputtingConnect.js need to updated in src folder of installed original version from travis lang, here v. 1.3.5
+
+npm needs to be available, afterwards the following commands must be executed in resources/app directory
+
+npm install express --save
+npm install bodyparser
+
+This is early development so happy about feedback but do not base your SGT career on it
+
+---------------------------------
+
 ## About
 
 Integrates the garmin R10 with the GSPro software.
@@ -13,7 +26,7 @@ If you find this useful I would appreciate you clicking the "star" button in the
 
 Go to the [releases page](https://github.com/travislang/gspro-garmin-connect-v2/releases)
 
-Download the file `gspro-r10-connect.zip` from the assets sectionof the most recent release - currently `v1.2.1`
+Download the file `gspro-r10-connect.zip` from the assets sectionof the most recent release - currently `v1.3.5`
 
 Extract the contents of the zip file and open the folder.  You will only need to use the `r10-connect.exe` file so you can add a shortcut to your desktop to make future access easier.
 
