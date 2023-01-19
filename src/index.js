@@ -43,6 +43,9 @@ const startApp = () => {
     })
 }
 
+// To overcome GPU error msgs "Passthrough is not supported, GL is disabled"
+app.disableHardwareAcceleration()
+
 app.on('ready', startApp)
 
 app.on('window-all-closed', () => {

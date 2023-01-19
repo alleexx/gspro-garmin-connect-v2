@@ -32,6 +32,7 @@ class GsProConnect {
             port: ENV.PORT,
         })
         this.socket.setTimeout(5000)
+        
 
         this.socket.on('timeout', () => {
             this.ipcPort.postMessage({

@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let port
 
     let ipOptionsOpen = false
+    let ballColorOptionsOpen = false
 
     window.onmessage = (event) => {
         if (event.source === window && event.data === 'main-port') {
@@ -30,6 +31,18 @@ window.addEventListener('DOMContentLoaded', () => {
                     timeout = false
                 }, 8000)
             })
+
+            const startPuttSimButton = document.querySelector('#start-putt-sim')
+
+            startPuttSimButton.addEventListener('click', () => {
+                // Check if GSPRO is connected - maybe removed
+                // if (!gsProConnected) {
+                //     return
+                // }
+                timeout = true
+
+                port.postMessage('startPuttSim')
+            })
         }
     }
 
@@ -44,7 +57,21 @@ window.addEventListener('DOMContentLoaded', () => {
         ipOptionsOpen = !ipOptionsOpen
     }
 
+    function toggleModalBallColor() {
+        const ballColorOPtionContainer = document.querySelector('.ball-color-options-container')
+
+        if (ballColorOptionsOpen) {
+            ballColorOPtionContainer.style.visibility = 'hidden'
+        } else {
+            ballColorOPtionContainer.style.visibility = 'visible'
+        }
+        ballColorOptionsOpen = !ballColorOptionsOpen
+    }
+
     document.querySelector('#ip-settings').addEventListener('click', toggleModal)
+
+    document.querySelector('#ball-color-settings').addEventListener('click', toggleModalBallColor)
+
 
     function handleMessage(data) {
         if (data.type) {
@@ -62,6 +89,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 setIPOptions(data.data, true)
             } else if (data.type === 'setIP') {
                 setIP(data.data)
+            } else if (data.type === 'ballColorOptions') {
+                setballColorOptions(data.data, true)
+            } else if (data.type === 'setBallColor') {
+                setBallColor(data.data)
             }
         }
     }
@@ -72,6 +103,12 @@ window.addEventListener('DOMContentLoaded', () => {
         updateIPOptions(ip)
     }
 
+    function setBallColor(ballColor) {
+        const ballColorText = document.getElementById('ball-color')
+        ballColorText.innerText = ballColor
+        updateBallColorOptions(ballColor)
+    }
+
     function updateIPOptions(activeIp) {
         const ipOptionsContainer = document.querySelector('.ip-settings-options-container')
 
@@ -80,6 +117,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 ipOption.classList.add('ip-option-text-selected')
             } else {
                 ipOption.classList.remove('ip-option-text-selected')
+            }
+        })
+    }
+
+    function updateBallColorOptions(activeBallColor) {
+        const ballColorOptionsContainer = document.querySelector('.ball-color-options-container')
+
+        ballColorOptionsContainer.querySelectorAll('.ball-color-text').forEach((ballColorOption) => {
+            if (ballColorOption.innerHTML === activeBallColor) {
+                ballColorOption.classList.add('ball-color-text-selected')
+            } else {
+                ballColorOption.classList.remove('ball-color-text-selected')
             }
         })
     }
@@ -105,6 +154,29 @@ window.addEventListener('DOMContentLoaded', () => {
             })
             toggleModal()
             // ipOptionsOpen = !ipOptionsOpen
+        })
+    }
+
+    function setballColorOptions(ballColorOptions) {
+        const ballColorOptionsContainer = document.querySelector('.ball-color-options-container')
+
+        const ballColorTextNode = ballColorOptionsContainer.querySelector('.ball-color-option-text').cloneNode(true)
+
+        ballColorOptionsContainer.innerHTML = ''
+
+        for (let ballColorOption of ballColorOptions) {
+            const ballColorText = ballColorTextNode.cloneNode(true)
+
+            ballColorText.innerHTML = ballColorOption
+            ballColorOptionsContainer.append(ballColorText)
+        }
+
+        ballColorOptionsContainer.addEventListener('click', (e) => {
+            port.postMessage({
+                type: 'setBallColor',
+                data: e.target.innerHTML,
+            })
+            toggleModalBallColor()
         })
     }
 

@@ -4,14 +4,45 @@ const SimMessages = require('./helpers/simMessages');
   
 var app = express();
 
+var ballColors = ["white","yellow","orange","green","red"]
+
+var args = [];
+
+var exec = require('child_process').execFile;
+    
+    
 class PuttingConnect {
-        constructor(ipcPort, gsProConnect) {
+    constructor(ipcPort, gsProConnect) {
         
         this.ipcPort = ipcPort;
         this.gsProConnect = gsProConnect;
         this.ballData = {}
         this.clubData = {}
         this.clubType = 'Putter'
+        this.ballColor = "white"
+
+        this.ipcPort.on('message', (event) => {
+            if (event.data === 'startPuttSim') {
+                this.ipcPort.postMessage({
+                    type: 'R10Message',
+                    message: "PUTTING Start Simulator",
+                });
+                args = ["-c "+this.ballColor];               
+                this.execute("ball_tracking.exe",args,__dirname+"\\\\dist\\\\ball_tracking\\\\"); 
+            } else if (event.data && event.data.type === 'setBallColor') {
+            this.setNewBallColor(event.data.data)
+        }
+        });
+
+        this.ipcPort.postMessage({
+            type: 'ballColorOptions',
+            data: ballColors,
+        })
+
+        this.ipcPort.postMessage({
+            type: 'setBallColor',
+            data: this.ballColor,
+        })
     
         app.use(bodyParser.json());
         //app.use(bodyParser.raw({ inflate: true, limit: '100kb', type: 'text/xml' }));
@@ -27,7 +58,7 @@ class PuttingConnect {
 
             this.ipcPort.postMessage({
                 type: 'R10Message',
-                message: "CAM PUTTING Data Received and Ball Data set",
+                message: "PUTTING Data Received and Ball Data set",
             });
 
             
@@ -43,11 +74,35 @@ class PuttingConnect {
         });
         
         // Server listening to PORT 8888
-        app.listen(8888);
+        app.listen(8888);       
 
     }
 
+    setNewBallColor(ballColor) {
+        this.ipcPort.postMessage({
+            type: 'setBallColor',
+            data: ballColor,
+        })
+
+        this.ballColor = ballColor
+
+        this.ipcPort.postMessage({
+            type: 'R10Message',
+            message: `PUTTING Switching Ball Color to ${ballColor}`,
+        })
+    }
+
+    /**
+         * Function to execute exe
+         * @param {string} fileName The name of the executable file to run.
+         * @param {string[]} params List of string arguments.
+         * @param {string} path Current working directory of the child process.
+         */
+    async execute(fileName, params, path){
     
+        exec(fileName, params, { cwd: path });
+    }
+
 
     setBallData(ballData) {
         let spinAxis = Number(ballData.SpinAxis)

@@ -166,6 +166,21 @@ a {
     color: rgb(109, 109, 109);
 }
 
+.start-putt-sim {
+    border-radius: 5px;
+    background-color: rgba(150, 244, 122, 0.673);
+    border: 2px solid rgba(98, 247, 53, 1);
+    cursor: pointer;
+    padding: 10px 25px;
+}
+
+.start-putt-sim p {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(31, 31, 31);
+}
+
 .send-test-shot {
     border-radius: 5px;
     background-color: rgba(150, 244, 122, 0.673);
@@ -181,6 +196,7 @@ a {
     cursor: pointer;
     padding: 10px 25px;
 }
+
 .send-test-shot-disabled {
     border-radius: 5px;
     background-color: rgba(104, 104, 104, 0.673);
@@ -194,6 +210,7 @@ a {
     text-transform: uppercase;
     color: rgb(31, 31, 31);
 }
+
 .send-test-shot-disabled p {
     font-size: 14px;
     font-weight: bold;
@@ -239,5 +256,63 @@ a {
 }
 
 .ip-option-text-selected {
+    color: rgb(220, 220, 220);
+}
+
+.ball-color-title {
+    font-size: 12px;
+    margin-right: 10px;
+    color: rgb(145, 145, 145);
+    text-transform: uppercase;
+}
+
+#ball-color-settings {
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ball-color-options-container {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: rgb(77, 77, 77);
+    border-radius: 10px;
+    box-shadow: 2px 0px 18px rgba(4, 4, 4, 0.632);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    visibility: hidden;
+}
+
+.ball-color-text {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: rgb(205, 205, 205);
+}
+
+.ball-color-text-title {
+    font-size: 12px;
+    margin-right: 10px;
+    color: rgb(145, 145, 145);
+    text-transform: uppercase;
+}
+
+.ball-color-option-text {
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: rgb(143, 143, 143);
+    /* color: rgb(220, 220, 220); */
+    /* background-color: red; */
+}
+
+.ball-color-text-selected {
     color: rgb(220, 220, 220);
 }
