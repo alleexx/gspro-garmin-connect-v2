@@ -24,9 +24,13 @@ Calibrate to the Ball Color:
 
 You can start the putting sim mode with each ball color after one another and see if your putt is being picked up or you can use the calibrate option as ball color. This will record 30 seconds of video in which you should place the ball in the yellow rectangle wait for 5 seconds (the ball is not marked red in this option) and then putt. Try to get 2 putts recorded within the 30 seconds and it will automatically then run your recording through all color options available and give you an output with the highest detection rate number. You can then choose that color option.
 
-<img src="Camera-Putting-Alignment.png">
-
 This is early development so happy about feedback but do not base your SGT career on it
+
+Software is open source. Feel Free to buy me a coffee or a sleeve of golf balls if you like it.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U6U2I70HX)
+
+<img src="Camera-Putting-Alignment.png">
 
 Here is a short video demonstration of the prototype
 
