@@ -10,10 +10,10 @@ Calculation includes BallSpeed in MPH and HLA of the putt.
 Setup:
 
 - Unpack the [release](https://github.com/alleexx/gspro-garmin-connect-v2/releases) and execute "gspro-garmin-connect-v2-putting.exe"
-- Position Webcam on the side an above the putting start area across from you (currently for a right handed player) - see video for example
-- Position the Ball (choose the right color or use calibrate as described below.) on a dark green surface - In my test the area visible to the webcam was about 60 centimeters high and across from me
+- Position Webcam on the side and above the putting start area across from you - see video for example
+- Position the Ball (choose the right color or use calibrate as described below.) on a dark green surface - In my test the area visible to the webcam was about 60 - 80 centimeters high and across from me
 - Adjust your webcam to the white line to reflect a straight put and place your ball into the yellow rectangle.
-- Once identified the ball should get a red circle fully around. If it is smaller than the ball it will not reflect the right putting speed. It must match the ball dimensions as best as it can.
+- Once identified the ball should get a red circle fully around. If it is smaller or bigger than the ball it will not reflect the right putting speed. It must match the ball dimensions as best as it can.
 - If the ball is not detected try adjusting the light situation or try a different ball color option (hit q to exit the putting simulator and start again with another Ball Color)
 - The putt needs to cross the red rectangle and needs to leave on the other side
 - If a shot is detected it is send to garmin connect app at http://localhost:8888/ where my extension of the garmin connect app is receiving the shot and passing it to GSPRO
@@ -22,7 +22,7 @@ Make sure to select the best ball color. White is a very general option if no co
 
 Calibrate to the Ball Color:
 
-You can start the putting sim mode with each ball color after one another and see if your putt is being picked up or you can use the calibrate option as ball color. This will record 30 seconds of video in which you should place the ball in the yellow rectangle wait for 5 seconds (the ball is not marked red in this option) and then putt. Try to get 2 putts recorded within the 30 seconds and it will automatically then run your recording through all color options available and give you an output whith the highest detection rate number. You can then choose that color option.
+You can start the putting sim mode with each ball color after one another and see if your putt is being picked up or you can use the calibrate option as ball color. This will record 30 seconds of video in which you should place the ball in the yellow rectangle wait for 5 seconds (the ball is not marked red in this option) and then putt. Try to get 2 putts recorded within the 30 seconds and it will automatically then run your recording through all color options available and give you an output with the highest detection rate number. You can then choose that color option.
 
 <img src="Camera-Putting-Alignment.png">
 
