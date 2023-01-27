@@ -1,6 +1,5 @@
-# Forked from travislang to include integration into cam-putting-py to send putting shots to GSPRO:
-
-## Prototype for Webcam based putting simulation for GSPRO utilizing the R10 connect package:
+# Prototype for Webcam based putting simulation for GSPRO utilizing the R10 connect package
+Forked from travislang to include integration into cam-putting-py to send putting shots to GSPRO
 
 Standalone version of the putting simulator can be found here:
 
