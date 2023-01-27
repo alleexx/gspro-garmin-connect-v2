@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     let ipOptionsOpen = false
     let ballColorOptionsOpen = false
+    let webcamIndexOptionsOpen = false
 
     window.onmessage = (event) => {
         if (event.source === window && event.data === 'main-port') {
@@ -68,9 +69,22 @@ window.addEventListener('DOMContentLoaded', () => {
         ballColorOptionsOpen = !ballColorOptionsOpen
     }
 
+    function toggleModalWebcamIndex() {
+        const webcamIndexOPtionContainer = document.querySelector('.webcam-index-options-container')
+
+        if (webcamIndexOptionsOpen) {
+            webcamIndexOPtionContainer.style.visibility = 'hidden'
+        } else {
+            webcamIndexOPtionContainer.style.visibility = 'visible'
+        }
+        webcamIndexOptionsOpen = !webcamIndexOptionsOpen
+    }
+
     document.querySelector('#ip-settings').addEventListener('click', toggleModal)
 
     document.querySelector('#ball-color-settings').addEventListener('click', toggleModalBallColor)
+
+    document.querySelector('#webcam-index-settings').addEventListener('click', toggleModalWebcamIndex)
 
 
     function handleMessage(data) {
@@ -91,9 +105,13 @@ window.addEventListener('DOMContentLoaded', () => {
                 setIP(data.data)
             } else if (data.type === 'ballColorOptions') {
                 setballColorOptions(data.data, true)
+            } else if (data.type === 'webcamIndexOptions') {
+                setwebcamIndexOptions(data.data, true)
             } else if (data.type === 'setBallColor') {
                 setBallColor(data.data)
-            }
+            } else if (data.type === 'setWebcamIndex') {
+                setWebcamIndex(data.data)
+        }
         }
     }
 
@@ -107,6 +125,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const ballColorText = document.getElementById('ball-color')
         ballColorText.innerText = ballColor
         updateBallColorOptions(ballColor)
+    }
+
+    function setWebcamIndex(webcamIndex) {
+        const webcamIndexText = document.getElementById('webcam-index')
+        webcamIndexText.innerText = webcamIndex
+        updateWebcamIndexOptions(webcamIndex)
     }
 
     function updateIPOptions(activeIp) {
@@ -129,6 +153,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 ballColorOption.classList.add('ball-color-text-selected')
             } else {
                 ballColorOption.classList.remove('ball-color-text-selected')
+            }
+        })
+    }
+
+    function updateWebcamIndexOptions(activeWebcamIndex) {
+        const webcamIndexOptionsContainer = document.querySelector('.webcam-index-options-container')
+
+        webcamIndexOptionsContainer.querySelectorAll('.webcam-index-text').forEach((webcamIndexOption) => {
+            if (webcamIndexOption.innerHTML === activeWebcamIndex) {
+                webcamIndexOption.classList.add('webcam-index-text-selected')
+            } else {
+                webcamIndexOption.classList.remove('webcam-index-text-selected')
             }
         })
     }
@@ -177,6 +213,29 @@ window.addEventListener('DOMContentLoaded', () => {
                 data: e.target.innerHTML,
             })
             toggleModalBallColor()
+        })
+    }
+
+    function setwebcamIndexOptions(webcamIndexOptions) {
+        const webcamIndexOptionsContainer = document.querySelector('.webcam-index-options-container')
+
+        const webcamIndexTextNode = webcamIndexOptionsContainer.querySelector('.webcam-index-option-text').cloneNode(true)
+
+        webcamIndexOptionsContainer.innerHTML = ''
+
+        for (let webcamIndexOption of webcamIndexOptions) {
+            const webcamIndexText = webcamIndexTextNode.cloneNode(true)
+
+            webcamIndexText.innerHTML = webcamIndexOption
+            webcamIndexOptionsContainer.append(webcamIndexText)
+        }
+
+        webcamIndexOptionsContainer.addEventListener('click', (e) => {
+            port.postMessage({
+                type: 'setWebcamIndex',
+                data: e.target.innerHTML,
+            })
+            toggleModalWebcamIndex()
         })
     }
 

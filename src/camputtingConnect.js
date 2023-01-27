@@ -4,7 +4,9 @@ const SimMessages = require('./helpers/simMessages');
   
 var app = express();
 
-var ballColors = ["white","yellow","orange","green","red"]
+var ballColors = ["calibrate","white","white2","yellow","yellow2","orange","orange2","orange3","green","green2","red","red2"]
+
+var webcamIndeces = ["0","1","2","3"]
 
 var args = [];
 
@@ -19,19 +21,23 @@ class PuttingConnect {
         this.ballData = {}
         this.clubData = {}
         this.clubType = 'Putter'
-        this.ballColor = "white"
+        this.ballColor = "calibrate"
+        this.webcamIndex = 0
 
+        
         this.ipcPort.on('message', (event) => {
             if (event.data === 'startPuttSim') {
                 this.ipcPort.postMessage({
                     type: 'R10Message',
                     message: "PUTTING Start Simulator",
                 });
-                args = ["-c "+this.ballColor];               
+                args = ["-c="+this.ballColor,"-w="+this.webcamIndex];               
                 this.execute("ball_tracking.exe",args,__dirname+"\\\\dist\\\\ball_tracking\\\\"); 
             } else if (event.data && event.data.type === 'setBallColor') {
             this.setNewBallColor(event.data.data)
-        }
+            } else if (event.data && event.data.type === 'setWebcamIndex') {
+                this.setNewWebcamIndex(event.data.data)
+            }
         });
 
         this.ipcPort.postMessage({
@@ -43,6 +49,17 @@ class PuttingConnect {
             type: 'setBallColor',
             data: this.ballColor,
         })
+
+        this.ipcPort.postMessage({
+            type: 'webcamIndexOptions',
+            data: webcamIndeces,
+        })
+
+        this.ipcPort.postMessage({
+            type: 'setWebcamIndex',
+            data: this.webcamIndex,
+        })
+    
     
         app.use(bodyParser.json());
         //app.use(bodyParser.raw({ inflate: true, limit: '100kb', type: 'text/xml' }));
@@ -89,6 +106,20 @@ class PuttingConnect {
         this.ipcPort.postMessage({
             type: 'R10Message',
             message: `PUTTING Switching Ball Color to ${ballColor}`,
+        })
+    }
+
+    setNewWebcamIndex(webcamIndex) {
+        this.ipcPort.postMessage({
+            type: 'setWebcamIndex',
+            data: webcamIndex,
+        })
+
+        this.webcamIndex = webcamIndex
+
+        this.ipcPort.postMessage({
+            type: 'R10Message',
+            message: `PUTTING Switching Webcam Index to ${webcamIndex}`,
         })
     }
 

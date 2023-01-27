@@ -241,6 +241,7 @@ a {
     flex-direction: column;
     padding: 10px 20px;
     visibility: hidden;
+    Z-index: 100;
 }
 
 .ip-option-text {
@@ -276,7 +277,7 @@ a {
 
 .ball-color-options-container {
     position: absolute;
-    top: 15px;
+    top: 5px;
     right: 20px;
     background-color: rgb(77, 77, 77);
     border-radius: 10px;
@@ -285,6 +286,7 @@ a {
     flex-direction: column;
     padding: 10px 20px;
     visibility: hidden;
+    Z-index: 100;
 }
 
 .ball-color-text {
@@ -316,3 +318,63 @@ a {
 .ball-color-text-selected {
     color: rgb(220, 220, 220);
 }
+
+.webcam-index-title {
+    font-size: 12px;
+    margin-right: 10px;
+    color: rgb(145, 145, 145);
+    text-transform: uppercase;
+}
+
+#webcam-index-settings {
+    position: absolute;
+    top: 90px;
+    right: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.webcam-index-options-container {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    background-color: rgb(77, 77, 77);
+    border-radius: 10px;
+    box-shadow: 2px 0px 18px rgba(4, 4, 4, 0.632);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    visibility: hidden;
+    Z-index: 100;
+}
+
+.webcam-index-text {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: rgb(205, 205, 205);
+}
+
+.webcam-index-text-title {
+    font-size: 12px;
+    margin-right: 10px;
+    color: rgb(145, 145, 145);
+    text-transform: uppercase;
+}
+
+.webcam-index-option-text {
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: rgb(143, 143, 143);
+    /* color: rgb(220, 220, 220); */
+    /* background-color: red; */
+}
+
+.webcam-index-text-selected {
+    color: rgb(220, 220, 220);
+}
+
