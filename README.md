@@ -24,6 +24,10 @@ Calibrate to the Ball Color:
 
 You can start the putting sim mode with each ball color after one another and see if your putt is being picked up or you can use the calibrate option as ball color. This will record 30 seconds of video in which you should place the ball in the yellow rectangle wait for 5 seconds (the ball is not marked red in this option) and then putt. Try to get 2 putts recorded within the 30 seconds and it will automatically then run your recording through all color options available and give you an output with the highest detection rate number. You can then choose that color option.
 
+Webcam Index:
+
+You can select up to 4 different webcam index positions if you have multiple cameras connected to the PC. Default webcam is index 0. If this is not correct for you select a different index and restart the putting simulator.
+
 This is early development so happy about feedback but do not base your SGT career on it
 
 Software is open source. Feel Free to buy me a coffee or a sleeve of golf balls if you like it.
@@ -32,8 +36,12 @@ Software is open source. Feel Free to buy me a coffee or a sleeve of golf balls 
 
 <img src="Camera-Putting-Alignment.png">
 
-Here is a short video demonstration of the prototype
+Here is a short video demonstration of the beta version and the initial prototype:
 
+beta v 0.3
+https://youtu.be/Ap11-njTi0E
+
+prototoype v 0.1
 https://youtu.be/ZgcH25WkCWQ
 
 ## About the Original App from Travis below
