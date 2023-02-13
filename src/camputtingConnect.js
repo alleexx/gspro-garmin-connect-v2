@@ -1,12 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const SimMessages = require('./helpers/simMessages');
+const ENV = require('./env')
   
 var app = express();
 
-var ballColors = ["calibrate","white","white2","yellow","yellow2","orange","orange2","orange3","green","green2","red","red2"]
+var ballColors = ["calibrate","white","white2","yellow","yellow2","orange","orange2","orange3","orange4","green","green2","red","red2"]
 
-var webcamIndeces = ["0","1","2","3"]
+var webcamIndeces = ["0","1","2","3","4","5"]
 
 var args = [];
 
@@ -21,8 +22,21 @@ class PuttingConnect {
         this.ballData = {}
         this.clubData = {}
         this.clubType = 'Putter'
-        this.ballColor = "calibrate"
-        this.webcamIndex = 0
+        if(ENV.BALL_COLOR != ''){
+            this.ballColor = ENV.BALL_COLOR
+        }
+        else {
+            this.ballColor = "calibrate"
+        } 
+        if(ENV.WEBCAMINDEX != ''){
+            this.webcamIndex = ENV.WEBCAMINDEX
+        }
+        else {
+            this.webcamIndex = 0
+        }   
+        this.puttingEnabled = true
+
+        gsProConnect.passPutting(this);
 
         
         this.ipcPort.on('message', (event) => {
@@ -34,9 +48,13 @@ class PuttingConnect {
                 args = ["-c="+this.ballColor,"-w="+this.webcamIndex];               
                 this.execute("ball_tracking.exe",args,__dirname+"\\\\dist\\\\ball_tracking\\\\"); 
             } else if (event.data && event.data.type === 'setBallColor') {
-            this.setNewBallColor(event.data.data)
+                this.setNewBallColor(event.data.data)
             } else if (event.data && event.data.type === 'setWebcamIndex') {
                 this.setNewWebcamIndex(event.data.data)
+            } else if (event.data.type === 'puttingEnabled') {
+                console.log("Putting File_ Enabled detected")
+            } else if (event.data.type === 'puttingDisabled') {
+                console.log("Putting File_ Disabled detected")
             }
         });
 
@@ -78,8 +96,15 @@ class PuttingConnect {
                 message: "PUTTING Data Received and Ball Data set",
             });
 
-            
-             this.sendShot()
+            if(this.puttingEnabled == true){
+                this.sendShot()
+            }
+            else {
+                this.ipcPort.postMessage({
+                    type: 'R10Message',
+                    message: "PUTTING NOT ENABLED - Choose PT as Club in GSPRO",
+                });
+            }
         
             // Retrieve array form post body
             // var ballData = req.body.ballData; 
@@ -93,6 +118,14 @@ class PuttingConnect {
         // Server listening to PORT 8888
         app.listen(8888);       
 
+    }
+
+    enablePutting(){
+        this.puttingEnabled = true
+    }
+
+    disablePutting(){
+        this.puttingEnabled = false
     }
 
     setNewBallColor(ballColor) {

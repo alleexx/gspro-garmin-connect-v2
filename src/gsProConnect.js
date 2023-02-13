@@ -17,6 +17,10 @@ class GsProConnect {
         this.connectSocket()
     }
 
+    passPutting(camputtingConnect){
+        this.camputtingConnect = camputtingConnect;
+    }
+
     connectSocket() {
         this.ipcPort.postMessage({
             type: 'gsProStatus',
@@ -112,11 +116,35 @@ class GsProConnect {
                 setTimeout(() => this.connectSocket(), TIMEOUT_MS)
             }
         })
-
+        
         this.socket.on('data', (data) => {
             try {
-                const dataObj = JSON.parse(data)
-                console.log('incoming message from gsPro:', dataObj)
+                var res = data.replace("}{", "}|{");
+                var dataarr = res.split("|");
+                dataarr.forEach(element => {
+
+                    const dataObj = JSON.parse(element)
+    
+                    console.log('incoming message from gsPro:', dataObj)
+                    if(dataObj.Code == 201 && dataObj.Player.Club == "PT"){
+                        console.log("Putting Mode Enabled")
+                        this.camputtingConnect.enablePutting()
+                        this.ipcPort.postMessage({
+                            type: 'gsProMessage',
+                            message: 'PT Club detected: Putting Mode Enabled',
+                            level: 'success',
+                        })
+                    }
+                    if(dataObj.Code == 201 && dataObj.Player.Club != "PT"){
+                        console.log("Putting Mode Disabled")
+                        this.camputtingConnect.disablePutting()
+                        this.ipcPort.postMessage({
+                            type: 'gsProMessage',
+                            message: 'Non PT Club detected: Putting Mode Disabled',
+                            level: 'success',
+                        })
+                    }
+                }); 
             } catch (e) {
                 console.log('error parsing incoming gsPro message', e)
             }

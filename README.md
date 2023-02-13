@@ -17,8 +17,10 @@ Setup:
 - If the ball is not detected try adjusting the light situation or try a different ball color option (hit q to exit the putting simulator and start again with another Ball Color)
 - The putt needs to cross the red rectangle and needs to leave on the other side
 - If a shot is detected it is send to garmin connect app at http://localhost:8888/ where my extension of the garmin connect app is receiving the shot and passing it to GSPRO
+- Use "a" to go to Advanced Settings - here you can adjust the start position rectangle and set a fixed radius if the detected radius is not consistent for you
+- You can default the configuration options to your preferred settings for ball color / network interface and webcam index in /resources/app/src/env.js
 
-Make sure to select the best ball color. White is a very general option if no color ball is availabe but might give you more false reads on other white objects. If you have use a colored ball.
+Make sure to select the best ball color. Orange is the best detected ball color. White is a very general option if no color ball is availabe but might give you more false reads on other white objects. If you have use a colored ball.
 
 Calibrate to the Ball Color:
 
@@ -27,6 +29,8 @@ You can start the putting sim mode with each ball color after one another and se
 Webcam Index:
 
 You can select up to 4 different webcam index positions if you have multiple cameras connected to the PC. Default webcam is index 0. If this is not correct for you select a different index and restart the putting simulator.
+
+Any HD webcam should do. If you get a webcam with 60 FPS with faster shutter speed you might have better accuracy though. 30 FPS is pretty good up to 8-10 MPH ball speed. Also you can connect an android or iphone camera using 3rd party software like droidcam or ivcam.
 
 This is early development so happy about feedback but do not base your SGT career on it
 

@@ -12,7 +12,12 @@ class GarminConnect {
         this.clubType = '7Iron'
         this.ipcPort = ipcPort
         this.gsProConnect = gsProConnect
-        this.localIP = localIP
+        if(ENV.NETWORK_INT != ''){
+            this.localIP = ENV.NETWORK_INT
+        }
+        else {
+            this.localIP = localIP
+        }
         this.pingTimeout = false
         this.intervalID = null
 
