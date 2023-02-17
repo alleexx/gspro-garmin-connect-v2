@@ -22,6 +22,8 @@ Setup:
 
 Make sure to select the best ball color. Orange is the best detected ball color. White is a very general option if no color ball is availabe but might give you more false reads on other white objects. If you have use a colored ball.
 
+Here are some collected FAQs you should also read if anything is in question: https://github.com/alleexx/gspro-garmin-connect-v2/blob/main/FAQ.md
+
 Calibrate to the Ball Color:
 
 You can start the putting sim mode with each ball color after one another and see if your putt is being picked up or you can use the calibrate option as ball color. This will record 30 seconds of video in which you should place the ball in the yellow rectangle wait for 5 seconds (the ball is not marked red in this option) and then putt. Try to get 2 putts recorded within the 30 seconds and it will automatically then run your recording through all color options available and give you an output with the highest detection rate number. You can then choose that color option.
