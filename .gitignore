@@ -90,3 +90,5 @@ out/
 
 # Custom Environment
 env-priv.js
+
+.vscode

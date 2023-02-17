@@ -1,7 +1,7 @@
 {
   "name": "gspro-garmin-connect-v2-putting-extension",
   "productName": "gspro-garmin-connect-v2-putting",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "Connect R10 to GSPro with Putt Simulator",
   "main": "src/index.js",
   "scripts": {
