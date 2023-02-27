@@ -194,6 +194,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function setballColorOptions(ballColorOptions) {
+
         const ballColorOptionsContainer = document.querySelector('.ball-color-options-container')
 
         const ballColorTextNode = ballColorOptionsContainer.querySelector('.ball-color-option-text').cloneNode(true)
@@ -217,23 +218,50 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function setwebcamIndexOptions(webcamIndexOptions) {
+        
         const webcamIndexOptionsContainer = document.querySelector('.webcam-index-options-container')
 
         const webcamIndexTextNode = webcamIndexOptionsContainer.querySelector('.webcam-index-option-text').cloneNode(true)
 
         webcamIndexOptionsContainer.innerHTML = ''
 
-        for (let webcamIndexOption of webcamIndexOptions) {
-            const webcamIndexText = webcamIndexTextNode.cloneNode(true)
+        //test reading webcams in js
+        navigator.mediaDevices.enumerateDevices().then(function (devices) {
+            var webcamOptionId = 0
+            for(var i = 0; i < devices.length; i ++){
+                var device = devices[i];
+                if (device.kind === 'videoinput') {
+                    console.log(webcamOptionId+ ":"+device.label);
 
-            webcamIndexText.innerHTML = webcamIndexOption
-            webcamIndexOptionsContainer.append(webcamIndexText)
-        }
+                    const webcamIndexText = webcamIndexTextNode.cloneNode(true)
+            
+                    webcamIndexText.innerHTML = webcamOptionId+":"+device.label
+                    webcamIndexText.id = webcamOptionId
+
+                    webcamIndexOptionsContainer.append(webcamIndexText)
+                    
+                    webcamOptionId = webcamOptionId+1;
+                }
+            };
+            
+
+            if (webcamOptionId == 0) {
+
+                for (let webcamIndexOption of webcamIndexOptions) {
+                    const webcamIndexText = webcamIndexTextNode.cloneNode(true)
+        
+                    webcamIndexText.innerHTML = webcamIndexOption
+                    webcamIndexText.id = webcamIndexOption
+                    webcamIndexOptionsContainer.append(webcamIndexText)
+                }
+
+            }
+        });
 
         webcamIndexOptionsContainer.addEventListener('click', (e) => {
             port.postMessage({
                 type: 'setWebcamIndex',
-                data: e.target.innerHTML,
+                data: e.target.id,
             })
             toggleModalWebcamIndex()
         })
