@@ -7,34 +7,27 @@ https://github.com/alleexx/cam-putting-py
 
 Calculation includes BallSpeed in MPH and HLA of the putt. 
 
-Setup:
+## Setup
 
+### You can find a setup video here: https://youtu.be/ShtEW0fziwM
+
+- Download the latest [release](https://github.com/alleexx/gspro-garmin-connect-v2/releases) zip file
 - Unpack the [release](https://github.com/alleexx/gspro-garmin-connect-v2/releases) and execute "gspro-garmin-connect-v2-putting.exe"
 - Position Webcam on the side and above the putting start area across from you - see video for example
-- Position the Ball (choose the right color or use calibrate as described below.) on a dark green surface - In my test the area visible to the webcam was about 60 - 80 centimeters high and across from me
-- Adjust your webcam to the white line to reflect a straight put and place your ball into the yellow rectangle.
+- Position the Ball (choose the right color or use calibrate as described below.) on a dark green surface - In my test the area visible to the webcam was about 1 meter high and across from me
+- Adjust your webcam to the white line to reflect a straight putt and place your ball into the yellow rectangle.
+- Use "a" to go to Advanced Settings - here you can adjust the start position rectangle and set a fixed radius if the detected radius is not consistent for you
 - Once identified the ball should get a red circle fully around. If it is smaller or bigger than the ball it will not reflect the right putting speed. It must match the ball dimensions as best as it can.
-- If the ball is not detected try adjusting the light situation or try a different ball color option (hit q to exit the putting simulator and start again with another Ball Color)
+- If the ball is not detected try adjusting the light situation or your webcam brightness settings or try a different ball color option (hit q to exit the putting simulator and start again with another Ball Color)
 - The putt needs to cross the red rectangle and needs to leave on the other side
 - If a shot is detected it is send to garmin connect app at http://localhost:8888/ where my extension of the garmin connect app is receiving the shot and passing it to GSPRO
-- Use "a" to go to Advanced Settings - here you can adjust the start position rectangle and set a fixed radius if the detected radius is not consistent for you
 - You can default the configuration options to your preferred settings for ball color / network interface and webcam index in /resources/app/src/env.js
 
 Make sure to select the best ball color. Orange is the best detected ball color. White is a very general option if no color ball is availabe but might give you more false reads on other white objects. If you have use a colored ball.
 
-Here are some collected FAQs you should also read if anything is in question: https://github.com/alleexx/gspro-garmin-connect-v2/blob/main/FAQ.md
+Here are some collected FAQs you should also read if anything is in question: 
 
-Calibrate to the Ball Color:
-
-You can start the putting sim mode with each ball color after one another and see if your putt is being picked up or you can use the calibrate option as ball color. This will record 30 seconds of video in which you should place the ball in the yellow rectangle wait for 5 seconds (the ball is not marked red in this option) and then putt. Try to get 2 putts recorded within the 30 seconds and it will automatically then run your recording through all color options available and give you an output with the highest detection rate number. You can then choose that color option.
-
-Webcam Index:
-
-You can select up to 4 different webcam index positions if you have multiple cameras connected to the PC. Default webcam is index 0. If this is not correct for you select a different index and restart the putting simulator.
-
-Any HD webcam should do. If you get a webcam with 60 FPS with faster shutter speed you might have better accuracy though. 30 FPS is pretty good up to 8-10 MPH ball speed. Also you can connect an android or iphone camera using 3rd party software like droidcam or ivcam.
-
-This is early development so happy about feedback but do not base your SGT career on it
+### FAQ https://github.com/alleexx/gspro-garmin-connect-v2/blob/main/FAQ.md
 
 Software is open source. Feel Free to buy me a coffee or a sleeve of golf balls if you like it.
 
@@ -49,6 +42,20 @@ https://youtu.be/Ap11-njTi0E
 
 prototoype v 0.1
 https://youtu.be/ZgcH25WkCWQ
+
+## More Details on the Start Options on the Main Screen
+
+Calibrate and Ball Color:
+
+You can start the putting sim mode with each ball color after one another and see if your putt is being picked up or you can use the calibrate option as ball color. This will record 30 seconds of video in which you should place the ball in the yellow rectangle wait for 5 seconds (the ball is not marked red in this option) and then putt. Try to get 2 putts recorded within the 30 seconds and it will automatically then run your recording through all color options available and give you an output with the highest detection rate number. You can then choose that color option.
+
+Webcam Index:
+
+You can select up to 4 different webcam index positions if you have multiple cameras connected to the PC. Default webcam is index 0. If this is not correct for you select a different index and restart the putting simulator.
+
+Any HD webcam should do. If you get a webcam with 60 FPS with faster shutter speed you might have better accuracy though. 30 FPS is pretty good up to 8-10 MPH ball speed. Also you can connect an android or iphone camera using 3rd party software like droidcam or ivcam.
+
+This is early development so happy about feedback on the GSPRO dicord channel for R10. Usage on SGT tours at own risk as there might be misreads if the ball is not seen/detected by the webcam and putts are faster or slower than actually hit.
 
 ## About the Original App from Travis below
 
