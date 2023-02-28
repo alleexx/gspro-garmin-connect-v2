@@ -16,7 +16,7 @@ Calculation includes BallSpeed in MPH and HLA of the putt.
 - Position Webcam on the side and above the putting start area across from you - see video for example
 - Position the Ball (choose the right color or use calibrate as described below.) on a dark green surface - In my test the area visible to the webcam was about 1 meter high and across from me
 - Adjust your webcam to the white line to reflect a straight putt and place your ball into the yellow rectangle.
-- Use "a" to go to Advanced Settings - here you can adjust the start position rectangle and set a fixed radius if the detected radius is not consistent for you
+- Use "a" to go to Advanced Settings - here you can adjust the start position rectangle, set a fixed radius if the detected radius is not consistent for you, flip webcam image if i.e. your a lefty and darken the images in case your webcam settings do not allow for this
 - Once identified the ball should get a red circle fully around. If it is smaller or bigger than the ball it will not reflect the right putting speed. It must match the ball dimensions as best as it can.
 - If the ball is not detected try adjusting the light situation or your webcam brightness settings or try a different ball color option (hit q to exit the putting simulator and start again with another Ball Color)
 - The putt needs to cross the red rectangle and needs to leave on the other side
