@@ -32,7 +32,7 @@ class GsProConnect {
         })
 
         this.socket = net.createConnection({
-            address: ENV.IP_ADDRESS,
+            host: ENV.IP_ADDRESS,
             port: ENV.PORT,
         })
         this.socket.setTimeout(5000)
