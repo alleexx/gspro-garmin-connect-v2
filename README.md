@@ -62,6 +62,16 @@ Any HD webcam should do. If you get a webcam with 60 FPS with faster shutter spe
 
 This is early development so happy about feedback on the GSPRO dicord channel for R10. Usage on SGT tours at own risk as there might be misreads if the ball is not seen/detected by the webcam and putts are faster or slower than actually hit.
 
+## Some Troubleshooting steps if you can not get it to work
+
+ I guess you saw my setup video so here are some more details.
+- Make sure to have a solid background. Green putting or hitting mat should be fine - The darker the better.
+- Don't cast a direct shadow over the ball if possible have some light on the ball side
+- Use a colored ball - orange works best for most people with color option orange2
+- Use the advanced settings (hit a) to limit the detection area a bit around the ball placed
+- Use the advanced settings darkness setting to limit the light reflections in the frame. Hopefully the ball will be detected in this way.
+- If this does not help you can hit "d" and see the advanced debug options. It will show you the mask frame and let you see if you have any other "white" = detected spots in the area. It is also possible to directly there change the color seperation options which you could try but hopefully would not be necessary. Some people had to alter saturation and exposure in their webcam settings to get a good base image of the webcam where the colored ball really shows good.
+
 ## About the Original App from Travis below
 
 Integrates the garmin R10 with the GSPro software.
