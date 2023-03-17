@@ -21,7 +21,9 @@ Calculation includes BallSpeed in MPH and HLA of the putt.
   - set a fixed radius if the detected radius is not consistent for you
   - flip webcam image if i.e. your a lefty
   - enable MJPEG option for changing the webcam codec to compressed MJPEG format - some webcams only support higher like 60 FPS settings on compressed video formats - auto detection of FPS settings will not work for this codec but acutal FPS should be accurate
+  - overwrite the detected FPS with a target FPS setting if not detected correctly - not all cameras support setting FPS through OpenCV
   - darken the images in case your webcam settings do not allow for this
+  - beta option of ps4 enabling is done in config.ini directly
 - Once identified the ball should get a red circle fully around. If it is smaller or bigger than the ball it will not reflect the right putting speed. It must match the ball dimensions as best as it can.
 - If the ball is not detected try adjusting the light situation or your webcam brightness settings or try a different ball color option (hit q to exit the putting simulator and start again with another Ball Color)
 - The putt needs to cross the red rectangle and needs to leave on the other side
